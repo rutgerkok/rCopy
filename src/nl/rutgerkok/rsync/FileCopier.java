@@ -25,6 +25,10 @@ public class FileCopier {
      * Copies all files.
      */
     public void copyAll() {
+        if(filesInFrom == null) {
+            System.err.println("Unable to copy null array. Connection lost?");
+            return;
+        }
         for (int i = 0; i < filesInFrom.length; i++) {
             copy(i, filesInFrom[i]);
         }
@@ -94,5 +98,6 @@ public class FileCopier {
                 destination.close();
             }
         }
+        destFile.setLastModified(sourceFile.lastModified());
     }
 }

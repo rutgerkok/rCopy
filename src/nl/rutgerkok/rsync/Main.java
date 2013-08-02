@@ -13,6 +13,7 @@ public class Main {
             System.err.println("Please enter valid path in the config file (" + configFileName + ")");
         } else {
             new FileCopier(configFile.getFrom(), configFile.getTo()).copyAll();
+            System.out.println("Done");
         }
     }
 }
