@@ -5,6 +5,8 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
+import nl.rutgerkok.rsync.Main;
+
 /**
  * Represents the window with all it's panels.
  * 
@@ -21,7 +23,7 @@ public class Window {
         // Create the window
         JFrame frame = new JFrame();
         frame.setBounds(100, 100, 420, 150);
-        // frame.setResizable(false);
+        frame.setTitle(Main.NAME + " v" + Main.VERSION);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Add panels and make window visible
