@@ -13,25 +13,20 @@ import java.nio.channels.FileChannel;
 public class FileCopier {
     private String[] filesInFrom;
     private final File from;
+    private final int indexInParentDirectory;
+    private final ProgressUpdater progressUpdater;
     private final File to;
 
-    public FileCopier(File from, File to) {
-        this.from = from;
-        this.to = to;
-        filesInFrom = from.list();
+    public FileCopier(ProgressUpdater progressUpdater, File from, File to) {
+        this(progressUpdater, 0, from, to);
     }
 
-    /**
-     * Copies all files.
-     */
-    public void copyAll() {
-        if(filesInFrom == null) {
-            System.err.println("Unable to copy null array. Connection lost?");
-            return;
-        }
-        for (int i = 0; i < filesInFrom.length; i++) {
-            copy(i, filesInFrom[i]);
-        }
+    public FileCopier(ProgressUpdater progressUpdater, int indexInParentDirectory, File from, File to) {
+        this.progressUpdater = progressUpdater;
+        this.from = from;
+        this.to = to;
+        this.indexInParentDirectory = indexInParentDirectory;
+        this.filesInFrom = from.list();
     }
 
     /**
@@ -41,8 +36,8 @@ public class FileCopier {
      *            The original name of the file.
      */
     private void copy(int i, String originalName) {
-        File original = new File(from, originalName);
-        File destination = new File(to, originalName);
+        File original = new File(this.from, originalName);
+        File destination = new File(this.to, originalName);
         if (original.isDirectory()) {
             // We have a directory to copy
             if (destination.isFile()) {
@@ -51,21 +46,35 @@ public class FileCopier {
             if (!destination.exists()) {
                 destination.mkdirs();
             }
-            new FileCopier(original, destination).copyAll();
+            new FileCopier(this.progressUpdater, i, original, destination).copyAll();
         } else {
             // We have a file to copy
             if (!destination.exists() || destination.lastModified() < original.lastModified()) {
                 try {
-                    System.out.println("Copying file " + originalName + " (" + i + "/" + filesInFrom.length + ")");
                     copyFile(original, destination);
+                    this.progressUpdater.onFileCopy(original, i, this.filesInFrom.length);
                 } catch (IOException e) {
-                    System.err.println("Error copying file " + original + " to " + destination);
-                    e.printStackTrace();
+                    this.progressUpdater.onFileError(original, e, i, this.filesInFrom.length);
                 }
             } else {
-                System.out.println("Skipping copy of file " + originalName + " (" + i + "/" + filesInFrom.length + ")");
+                this.progressUpdater.onFileSkip(original, i, this.filesInFrom.length);
             }
         }
+    }
+
+    /**
+     * Copies all files.
+     */
+    public void copyAll() {
+        this.progressUpdater.onDirectoryStart(this.from, this.indexInParentDirectory, this.filesInFrom.length);
+        if (this.filesInFrom == null) {
+            System.err.println("Unable to copy null array. Connection lost?");
+            return;
+        }
+        for (int i = 0; i < this.filesInFrom.length; i++) {
+            copy(i, this.filesInFrom[i]);
+        }
+        this.progressUpdater.onDirectoryEnd();
     }
 
     /**
