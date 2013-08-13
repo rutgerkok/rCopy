@@ -2,9 +2,16 @@
 
 Ultra-simple file copy tool. If the file in the directory to which you are copying already contains a file that was modified at the same time, the file won't be copied.
 
-## Running
-
+## Running with a GUI
 `java -jar rSync.jar [path/to/settings/file]`
+
+A simple GUI will pop up. Settings will be saved to the provided settings file. If you don't give the path, `settings.ini` will be used.
+
+![GUI](http://rutgerkok.nl/afbeeldingen/rsync.png)
+
+## Running without a GUI
+
+`java -jar rSync.jar nogui [path/to/settings/file]`
 
 If you don't give the path, `settings.ini` will be used.
 
