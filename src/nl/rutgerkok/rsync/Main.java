@@ -6,7 +6,7 @@ import java.io.File;
 import nl.rutgerkok.rsync.gui.GuiManager;
 
 public class Main {
-    public static final String NAME = "rSync";
+    public static final String NAME = "rCopy";
     public static final String VERSION = "1.1";
     
     public static void main(String[] args) {
