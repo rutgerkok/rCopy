@@ -1,11 +1,11 @@
-package nl.rutgerkok.rsync.gui;
+package nl.rutgerkok.copy.gui;
 
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
-import nl.rutgerkok.rsync.Main;
+import nl.rutgerkok.rcopy.Main;
 
 /**
  * Represents the window with all it's panels.

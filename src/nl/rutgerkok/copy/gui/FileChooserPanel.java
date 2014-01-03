@@ -1,4 +1,4 @@
-package nl.rutgerkok.rsync.gui;
+package nl.rutgerkok.copy.gui;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import nl.rutgerkok.copy.gui.FileChooser;
 
 public class FileChooserPanel extends JPanel {
     private final JTextField textField;

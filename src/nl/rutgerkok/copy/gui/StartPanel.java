@@ -1,4 +1,4 @@
-package nl.rutgerkok.rsync.gui;
+package nl.rutgerkok.copy.gui;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;

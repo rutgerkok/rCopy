@@ -1,9 +1,9 @@
-package nl.rutgerkok.rsync.gui;
+package nl.rutgerkok.copy.gui;
 
 import java.io.File;
 
-import nl.rutgerkok.rsync.ConfigFile;
-import nl.rutgerkok.rsync.FileCopier;
+import nl.rutgerkok.rcopy.ConfigFile;
+import nl.rutgerkok.rcopy.FileCopier;
 
 /**
  * Opens the window, starts the copy process, updates the settings file.

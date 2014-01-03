@@ -1,4 +1,4 @@
-package nl.rutgerkok.rsync.gui;
+package nl.rutgerkok.copy.gui;
 
 public interface ProgressBar {
     /**

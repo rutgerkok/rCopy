@@ -1,4 +1,4 @@
-package nl.rutgerkok.rsync.gui;
+package nl.rutgerkok.copy.gui;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.util.Deque;
 
 import javax.swing.SwingUtilities;
 
-import nl.rutgerkok.rsync.ProgressUpdater;
+import nl.rutgerkok.rcopy.ProgressUpdater;
 
 public class GuiProgressUpdater implements ProgressUpdater {
     private static class Directory {

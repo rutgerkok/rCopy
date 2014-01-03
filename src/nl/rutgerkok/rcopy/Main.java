@@ -1,9 +1,9 @@
-package nl.rutgerkok.rsync;
+package nl.rutgerkok.rcopy;
 
 import java.awt.GraphicsEnvironment;
 import java.io.File;
 
-import nl.rutgerkok.rsync.gui.GuiManager;
+import nl.rutgerkok.copy.gui.GuiManager;
 
 public class Main {
     public static final String NAME = "rCopy";

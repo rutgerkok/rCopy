@@ -1,4 +1,4 @@
-package nl.rutgerkok.rsync;
+package nl.rutgerkok.rcopy;
 
 import java.io.File;
 import java.io.IOException;
