@@ -49,7 +49,7 @@ public class FileCopier {
             new FileCopier(this.progressUpdater, i, original, destination).copyAll();
         } else {
             // We have a file to copy
-            if (!destination.exists() || destination.lastModified() < original.lastModified()) {
+            if (!destination.exists() || hasDifferentLastModifiedDate(destination, original)) {
                 try {
                     copyFile(original, destination);
                     this.progressUpdater.onFileCopy(original, i, this.filesInFrom.length);
@@ -60,6 +60,12 @@ public class FileCopier {
                 this.progressUpdater.onFileSkip(original, i, this.filesInFrom.length);
             }
         }
+    }
+    
+    private boolean hasDifferentLastModifiedDate(File file1, File file2) {
+        long difference = file1.lastModified() - file2.lastModified();
+        difference = Math.abs(difference);
+        return (difference > 100L);
     }
 
     /**
